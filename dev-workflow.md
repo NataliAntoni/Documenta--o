@@ -1,1003 +1,444 @@
-# Fluxo de Desenvolvimento
+`# Dev Workflow - Portal de Parcerias Netz
 
-## Objetivo
+## Versão
 
-Este documento registra o fluxo de trabalho estudado durante a Fase 0 do Portal de Parcerias da Netz.
+1.0
 
-Seu objetivo é descrever, de forma geral, as etapas envolvidas desde o recebimento das informações de um projeto até sua entrega, servindo como referência para entendimento do processo de desenvolvimento adotado no contexto do projeto.
-
----
-
-## Escopo
-
-Este documento não tem como objetivo definir processos corporativos oficiais da Netz nem documentar implementações específicas de ferramentas internas.
-
-O foco está em registrar o fluxo de trabalho analisado durante a residência tecnológica, considerando as atividades relacionadas ao levantamento de requisitos, desenvolvimento, gerenciamento de conteúdo e entrega de projetos digitais.
-
----
-
-## Visão geral do fluxo
-
-De forma simplificada, o processo pode ser representado pelas seguintes etapas:
-
-1. Recebimento das informações do projeto
-2. Análise inicial
-3. Levantamento e validação de requisitos
-4. Planejamento da solução
-5. Desenvolvimento
-6. Configuração e gerenciamento de conteúdo
-7. Testes e validações
-8. Aprovação
-9. Entrega
-10. Continuidade e evolução
-
-Cada uma dessas etapas possui objetivos específicos e contribui para a construção do projeto de forma organizada e rastreável.
-
----
-
-## Participantes envolvidos
-
-Dependendo do projeto, diferentes pessoas ou equipes podem participar do processo.
-
-Exemplos:
-
-* cliente;
-* agência parceira;
-* equipe de desenvolvimento;
-* equipe de conteúdo;
-* responsáveis pela validação;
-* responsáveis pela publicação.
-
-A participação de cada grupo pode variar conforme as características e necessidades do projeto.
-
----
-
-## Entrada do processo
-
-O fluxo tem início quando são recebidas as informações necessárias para compreensão da demanda.
-
-Essas informações podem incluir:
-
-* objetivos do projeto;
-* informações sobre a empresa;
-* público-alvo;
-* funcionalidades desejadas;
-* referências visuais;
-* necessidades de conteúdo;
-* requisitos técnicos.
-
-A qualidade das informações recebidas influencia diretamente as etapas posteriores do processo.
-
----
-
-## Importância da coleta de informações
-
-Uma etapa inicial bem estruturada contribui para:
-
-* reduzir ambiguidades;
-* diminuir retrabalho;
-* facilitar o planejamento;
-* melhorar a comunicação entre as partes envolvidas;
-* aumentar a previsibilidade do desenvolvimento.
-
-Por esse motivo, a coleta e organização das informações são consideradas etapas fundamentais do fluxo.
-
----
-
-## Organização das informações
-
-Após o recebimento inicial, as informações devem ser organizadas de forma que possam ser consultadas durante todo o ciclo do projeto.
-
-Exemplos de informações frequentemente utilizadas:
-
-* objetivos de negócio;
-* requisitos funcionais;
-* requisitos de conteúdo;
-* requisitos visuais;
-* integrações necessárias;
-* restrições conhecidas.
-
-A centralização dessas informações facilita o acompanhamento e a tomada de decisões ao longo do desenvolvimento.
-
----
-
-## Relação com o Portal de Parcerias
-
-No contexto do Portal de Parcerias, parte dessas informações pode ser coletada por meio do processo de briefing utilizado para levantamento das necessidades do projeto.
-
-O briefing tem papel importante na estruturação das informações iniciais e na redução de lacunas durante as etapas posteriores do fluxo.
-
----
-
-## Considerações iniciais
-
-O fluxo apresentado neste documento busca representar uma visão geral do processo estudado durante a Fase 0.
-
-As etapas descritas poderão sofrer adaptações conforme a natureza dos projetos, ferramentas utilizadas e necessidades específicas identificadas ao longo do desenvolvimento.
-
----
-
-## Recebimento das informações do projeto
-
-Após a identificação de uma nova demanda, inicia-se a etapa de coleta de informações necessárias para compreensão do projeto.
-
-O objetivo dessa fase é reunir dados suficientes para permitir a análise da necessidade apresentada e apoiar as etapas posteriores de planejamento e desenvolvimento.
-
----
-
-### Objetivos da coleta inicial
-
-A coleta inicial busca compreender aspectos fundamentais do projeto, como:
-
-* contexto da empresa;
-* objetivos do negócio;
-* público-alvo;
-* tipo de projeto desejado;
-* funcionalidades necessárias;
-* requisitos de conteúdo;
-* referências visuais;
-* restrições conhecidas.
-
-Essas informações servem como base para todo o fluxo de desenvolvimento.
-
----
-
-### Importância do briefing
-
-O briefing é um dos principais instrumentos utilizados para levantamento de requisitos.
-
-Sua função é transformar necessidades muitas vezes informais em informações organizadas e documentadas.
-
-Uma coleta inadequada de informações pode gerar:
-
-* interpretações incorretas;
-* retrabalho;
-* aumento da complexidade do projeto;
-* atrasos no desenvolvimento.
-
-Por esse motivo, o processo de briefing deve buscar equilíbrio entre profundidade de informação e facilidade de preenchimento.
-
----
-
-### Estruturação das informações
-
-Durante a fase de estudo do Portal de Parcerias, foi considerada uma abordagem baseada em seções temáticas para organizar a coleta de dados.
-
-Exemplos de categorias utilizadas:
-
-* informações iniciais;
-* contexto da empresa;
-* objetivos do projeto;
-* público-alvo;
-* tipo de projeto;
-* funcionalidades;
-* conteúdo;
-* identidade visual;
-* integrações;
-* requisitos complementares.
-
-Essa organização contribui para reduzir a desordem das informações e facilita consultas futuras.
-
----
-
-### Qualidade das informações recebidas
-
-A qualidade das informações coletadas possui impacto direto na qualidade do resultado final.
-
-Sempre que possível, recomenda-se obter respostas:
-
-* claras;
-* específicas;
-* contextualizadas;
-* alinhadas aos objetivos do projeto.
-
-Informações excessivamente genéricas podem dificultar a definição de requisitos e aumentar a necessidade de esclarecimentos posteriores.
-
----
-
-## Análise inicial
-
-Após o recebimento das informações, inicia-se uma etapa de análise e compreensão da demanda.
-
-O objetivo é identificar se os dados fornecidos são suficientes para prosseguir com o planejamento do projeto.
-
----
-
-### Verificação de completude
-
-Durante a análise inicial, recomenda-se verificar:
-
-* existência de informações obrigatórias;
-* clareza dos objetivos;
-* definição do público-alvo;
-* descrição adequada das funcionalidades;
-* disponibilidade de referências quando aplicável.
-
-A identificação precoce de lacunas reduz riscos nas etapas seguintes.
-
----
-
-### Identificação de inconsistências
-
-Além da completude, é importante observar possíveis inconsistências entre as informações fornecidas.
-
-Exemplos:
-
-* objetivos conflitantes;
-* funcionalidades incompatíveis com o escopo;
-* requisitos contraditórios;
-* ausência de informações essenciais.
-
-Esses pontos devem ser esclarecidos antes do avanço para etapas posteriores.
-
----
-
-### Entendimento do problema
-
-Antes de pensar em soluções, é necessário compreender qual problema ou necessidade motivou o projeto.
-
-Essa compreensão auxilia na tomada de decisões futuras relacionadas a:
-
-* estrutura do projeto;
-* experiência do usuário;
-* conteúdo;
-* funcionalidades;
-* prioridades de desenvolvimento.
-
----
-
-## Levantamento de requisitos
-
-Após a análise inicial, as informações passam a ser organizadas como requisitos do projeto.
-
-Esses requisitos servem como referência para planejamento, implementação e validação.
-
----
-
-### Requisitos funcionais
-
-Representam comportamentos e funcionalidades esperadas pelo projeto.
-
-Exemplos:
-
-* autenticação de usuários;
-* formulários;
-* painel administrativo;
-* integração com sistemas externos;
-* gerenciamento de conteúdo.
-
-Os requisitos funcionais descrevem o que o sistema deve ser capaz de realizar.
-
----
-
-### Requisitos não funcionais
-
-Representam características relacionadas à qualidade e funcionamento da solução.
-
-Exemplos:
-
-* acessibilidade;
-* desempenho;
-* responsividade;
-* segurança;
-* usabilidade.
-
-Esses requisitos influenciam diretamente a experiência de utilização do projeto.
-
----
-
-### Priorização de requisitos
-
-Nem todos os requisitos possuem o mesmo nível de importância.
-
-Sempre que possível, recomenda-se identificar:
-
-* requisitos essenciais;
-* requisitos desejáveis;
-* requisitos futuros.
-
-A priorização auxilia no planejamento e na definição de entregas.
-
----
-
-## Validação das informações
-
-Antes do início do desenvolvimento, recomenda-se validar o entendimento construído durante as etapas anteriores.
-
-O objetivo é reduzir divergências de interpretação e garantir alinhamento entre as partes envolvidas.
-
----
-
-### Benefícios da validação
-
-Uma etapa de validação adequada contribui para:
-
-* reduzir retrabalho;
-* aumentar previsibilidade;
-* melhorar comunicação;
-* minimizar ambiguidades;
-* fortalecer o alinhamento do projeto.
-
----
-
-## Resultado esperado desta etapa
-
-Ao final desta fase, espera-se possuir uma visão clara sobre:
-
-* objetivos do projeto;
-* necessidades do negócio;
-* público-alvo;
-* funcionalidades desejadas;
-* requisitos identificados;
-* possíveis restrições.
-
-Essas informações servirão como base para o planejamento e execução das etapas seguintes do fluxo de desenvolvimento.
-
----
-
-## Planejamento da solução
-
-Após a validação das informações e definição dos requisitos, inicia-se a etapa de planejamento da solução.
-
-O objetivo desta fase é transformar as necessidades identificadas em uma estrutura organizada que possa orientar o desenvolvimento do projeto.
-
----
-
-### Definição do escopo
-
-O escopo representa o conjunto de funcionalidades, conteúdos e comportamentos que deverão fazer parte da entrega.
-
-Nesta etapa busca-se definir:
-
-* o que será desenvolvido;
-* o que não faz parte da entrega;
-* prioridades do projeto;
-* dependências identificadas.
-
-A definição clara do escopo contribui para reduzir ambiguidades e alinhar expectativas entre as partes envolvidas.
-
----
-
-### Estruturação do projeto
-
-Com os requisitos definidos, inicia-se a organização da estrutura geral da solução.
-
-Dependendo da natureza do projeto, essa estrutura pode envolver:
-
-* páginas;
-* áreas administrativas;
-* fluxos de navegação;
-* formulários;
-* integrações;
-* conteúdos dinâmicos.
-
-O objetivo é criar uma visão geral do funcionamento esperado antes da implementação.
-
----
-
-### Organização da informação
-
-A forma como as informações são organizadas influencia diretamente a experiência dos usuários.
-
-Durante o planejamento, recomenda-se avaliar:
-
-* agrupamento de conteúdos;
-* hierarquia das informações;
-* fluxo de navegação;
-* clareza das ações principais.
-
-Uma organização adequada facilita o uso da plataforma e reduz esforço cognitivo durante a navegação.
-
----
-
-### Definição dos fluxos principais
-
-Nesta etapa são identificados os principais caminhos que os usuários deverão percorrer dentro do projeto.
-
-Exemplos:
-
-* acesso a informações;
-* preenchimento de formulários;
-* autenticação;
-* gerenciamento de conteúdo;
-* ações administrativas.
-
-A definição dos fluxos auxilia na compreensão do comportamento esperado da solução.
-
----
-
-## Planejamento de conteúdo
-
-O conteúdo possui papel fundamental na construção de produtos digitais.
-
-Por esse motivo, recomenda-se identificar antecipadamente quais informações estarão disponíveis e como serão gerenciadas.
-
----
-
-### Levantamento de conteúdo existente
-
-Sempre que possível, deve-se identificar materiais já disponíveis para utilização no projeto.
-
-Exemplos:
-
-* textos institucionais;
-* imagens;
-* logotipos;
-* documentos;
-* materiais de marketing.
-
-O aproveitamento de conteúdo existente pode reduzir esforço de produção durante o desenvolvimento.
-
----
-
-### Identificação de conteúdos pendentes
-
-Nem sempre todas as informações necessárias estão disponíveis no início do projeto.
-
-Por esse motivo, recomenda-se registrar conteúdos que ainda precisam ser produzidos.
-
-Exemplos:
-
-* textos;
-* imagens;
-* descrições de produtos;
-* materiais institucionais;
-* conteúdos para blog.
-
-Essa identificação ajuda a evitar bloqueios durante o desenvolvimento.
-
----
-
-### Planejamento de conteúdo dinâmico
-
-Projetos que utilizam CMS ou áreas administrativas exigem atenção especial à gestão de conteúdo.
-
-Nesta etapa, recomenda-se definir:
-
-* quais conteúdos poderão ser editados;
-* quais usuários terão acesso às alterações;
-* quais informações precisam ser atualizadas com frequência.
-
-Essas decisões impactam diretamente a estrutura administrativa da solução.
-
----
-
-## Preparação para o desenvolvimento
-
-Antes do início da implementação, é recomendável consolidar as decisões tomadas durante as etapas anteriores.
-
-O objetivo é reduzir dúvidas e criar uma base organizada para execução do projeto.
-
----
-
-### Consolidação dos requisitos
-
-Nesta fase, os requisitos levantados anteriormente devem estar organizados e acessíveis para consulta.
-
-Isso inclui:
-
-* requisitos funcionais;
-* requisitos não funcionais;
-* integrações;
-* restrições;
-* prioridades definidas.
-
-A centralização dessas informações facilita o trabalho durante a implementação.
-
----
-
-### Identificação de dependências
-
-Alguns projetos dependem de recursos externos para avançar.
-
-Exemplos:
-
-* conteúdos fornecidos pelo cliente;
-* acessos a plataformas;
-* integrações externas;
-* aprovações pendentes.
-
-Identificar essas dependências antecipadamente ajuda a reduzir atrasos.
-
----
-
-### Planejamento de entregas
-
-Quando aplicável, recomenda-se dividir o projeto em entregas menores.
-
-Benefícios:
-
-* maior previsibilidade;
-* acompanhamento mais simples;
-* validações intermediárias;
-* redução de riscos.
-
-A divisão em etapas também facilita ajustes ao longo do processo.
-
----
-
-## Início do desenvolvimento
-
-Com os requisitos definidos, conteúdo organizado e escopo validado, o projeto encontra-se preparado para a etapa de implementação.
-
-A partir desse ponto, as decisões registradas nas fases anteriores passam a orientar o desenvolvimento da solução.
-
----
-
-## Resultado esperado desta etapa
-
-Ao final desta fase, espera-se possuir:
-
-* escopo definido;
-* requisitos organizados;
-* estrutura geral planejada;
-* conteúdos identificados;
-* dependências registradas;
-* planejamento consolidado.
-
-Essas informações servirão como base para o desenvolvimento e para as etapas posteriores de validação e entrega.
-
----
-
-## Desenvolvimento
-
-Após a conclusão das etapas de planejamento e organização das informações, inicia-se o desenvolvimento da solução.
-
-Nesta fase, os requisitos levantados anteriormente são transformados em funcionalidades, páginas, componentes e fluxos utilizáveis pelos usuários.
-
----
-
-### Implementação das funcionalidades
-
-O desenvolvimento deve seguir os requisitos definidos durante o levantamento inicial.
-
-Exemplos de funcionalidades que podem fazer parte de um projeto:
-
-* formulários;
-* áreas administrativas;
-* autenticação de usuários;
-* integração com serviços externos;
-* gerenciamento de conteúdo;
-* dashboards;
-* páginas institucionais.
-
-A implementação deve buscar manter alinhamento com os objetivos definidos para o projeto.
-
----
-
-### Desenvolvimento iterativo
-
-Sempre que possível, recomenda-se desenvolver e validar partes menores da solução antes da conclusão completa do projeto.
-
-Benefícios:
-
-* identificação precoce de problemas;
-* redução de retrabalho;
-* validação contínua;
-* maior previsibilidade.
-
-Essa abordagem facilita ajustes ao longo do desenvolvimento.
-
----
-
-### Aplicação de boas práticas
-
-Durante a implementação, recomenda-se considerar aspectos relacionados à qualidade da solução.
-
-Exemplos:
-
-* acessibilidade;
-* responsividade;
-* usabilidade;
-* organização do código;
-* desempenho;
-* manutenção futura.
-
-Esses fatores influenciam diretamente a experiência dos usuários e a sustentabilidade do projeto.
-
----
-
-## Gerenciamento de conteúdo
-
-Além das funcionalidades, muitos projetos exigem mecanismos para atualização e gerenciamento de informações após a entrega.
-
-Por esse motivo, a definição da estratégia de gerenciamento de conteúdo faz parte do fluxo de desenvolvimento.
-
----
-
-### Conteúdo dinâmico
-
-Conteúdos dinâmicos são informações que podem ser alteradas sem necessidade de modificar diretamente o código da aplicação.
-
-Exemplos:
-
-* textos;
-* imagens;
-* banners;
-* notícias;
-* páginas institucionais;
-* informações de contato.
-
-Esse modelo facilita atualizações futuras e aumenta a autonomia dos responsáveis pelo projeto.
-
----
-
-### Utilização de CMS
-
-Quando aplicável, um sistema de gerenciamento de conteúdo (CMS) pode ser utilizado para administrar informações da plataforma.
-
-Benefícios:
-
-* centralização do conteúdo;
-* facilidade de atualização;
-* redução da dependência técnica para alterações simples;
-* maior controle sobre informações publicadas.
-
----
-
-### Definição de permissões
-
-Projetos com áreas administrativas normalmente exigem diferentes níveis de acesso.
-
-Exemplos:
-
-* administradores;
-* editores;
-* usuários com acesso limitado.
-
-A definição adequada dessas permissões contribui para organização e segurança do gerenciamento de conteúdo.
-
----
-
-## Testes
-
-Após a implementação das funcionalidades principais, recomenda-se realizar uma etapa de validação antes da entrega.
-
-O objetivo é verificar se a solução atende aos requisitos definidos e funciona conforme esperado.
-
 ---
 
-### Testes funcionais
+## Visão Geral do Fluxo`
 
-Os testes funcionais verificam se as funcionalidades estão operando corretamente.
+Briefing → Análise IA → Validação Técnica → Orçamento → Aprovação → Desenvolvimento → Homologação → Deploy → Pós-entrega
 
-Exemplos:
+text
 
-* envio de formulários;
-* autenticação;
-* navegação entre páginas;
-* integrações;
-* gerenciamento de conteúdo.
+```
 
-O foco está em confirmar o comportamento esperado da aplicação.
-
 ---
-
-### Testes de responsividade
-
-A interface deve ser avaliada em diferentes tamanhos de tela e dispositivos.
 
-Exemplos:
+## Etapa 1: Recebimento do Briefing
 
-* smartphones;
-* tablets;
-* notebooks;
-* monitores maiores.
+### 1.1 Início do Processo
 
-O objetivo é garantir consistência na experiência de utilização.
+| Ação | Responsável | Tempo estimado |
+|------|-------------|----------------|
+| Cliente acessa o portal | Cliente/Agência | 1 min |
+| Seleciona "Novo Briefing" | Cliente/Agência | - |
+| Preenche os 5 grupos do formulário | Cliente/Agência | 15-30 min |
 
----
-
-### Testes de acessibilidade
+### 1.2 Durante o Preenchimento
 
-Sempre que possível, recomenda-se verificar aspectos relacionados à acessibilidade.
+| Ação | Descrição |
+|------|-----------|
+| IA analisa respostas em tempo real | Identifica nicho e sugere perguntas relevantes |
+| Progresso é salvo automaticamente | Usuário pode voltar depois |
+| Validação de campos obrigatórios | Impede avanço sem preenchimento |
 
-Exemplos:
+### 1.3 Conclusão do Briefing
 
-* navegação por teclado;
-* contraste adequado;
-* utilização de textos alternativos;
-* identificação correta de elementos de formulário.
+| Ação | Responsável | Descrição |
+|------|-------------|-----------|
+| Usuário finaliza o briefing | Cliente/Agência | Clica em "Concluir Briefing" |
+| Sistema gera protocolo | Automático | Número do projeto é exibido |
+| Notificação enviada | Automático | Email para equipe Netz |
+| Briefing fica disponível em `/projetos/` | Sistema | Para consulta futura |
 
-Essas verificações contribuem para uma experiência mais inclusiva.
-
 ---
 
-### Testes de conteúdo
+## Etapa 2: Análise da IA e Estruturação dos Dados
 
-Também é recomendável revisar os conteúdos inseridos no projeto.
+### 2.1 Processamento Automático
 
-Exemplos:
+| Ação | Descrição |
+|------|-----------|
+| Extrair respostas do `briefing_json` | Todos os campos e valores |
+| Identificar tipo de projeto | institucional, ecommerce, portal, etc. |
+| Identificar nicho/segmento | cafeteria, moda, tecnologia, etc. |
+| Mapear funcionalidades solicitadas | Login, pagamentos, integrações, etc. |
+| Calcular complexidade | Baseado no número de perguntas respondidas |
 
-* erros de digitação;
-* links quebrados;
-* imagens incorretas;
-* informações desatualizadas.
+### 2.2 Saída da IA
 
-A revisão de conteúdo reduz problemas percebidos pelos usuários após a publicação.
+```json
+{
+  "tipo_projeto": "ecommerce",
+  "nicho": "cafeteria especializada",
+  "complexidade": "media",
+  "funcionalidades_identificadas": ["pagamentos", "catalogo", "frete"],
+  "sugestoes_tecnicas": ["WordPress + WooCommerce", "API de pagamento"],
+  "tempo_estimado_dias": 45,
+  "orcamento_sugerido": 15000
+}
+```
 
 ---
 
-## Validação
+## **Etapa 3: Validação Técnica**
 
-Após os testes internos, recomenda-se validar a solução com base nos requisitos definidos anteriormente.
+### **3.1 Revisão Manual pela Equipe Netz**
 
-O objetivo é confirmar que o projeto atende às necessidades identificadas durante o levantamento inicial.
-
----
+| **Ação** | **Responsável** | **Tempo estimado** |
+| --- | --- | --- |
+| Validar dados do briefing | Analista Netz | 15 min |
+| Verificar viabilidade técnica | Dev Lead | 10 min |
+| Identificar dependências externas | Analista | 5 min |
+| Definir stack tecnológica | Dev Lead | 10 min |
 
-### Verificação dos requisitos
+### **3.2 Checkpoints de Validação**
 
-Nesta etapa, recomenda-se revisar:
+| **Critério** | **O que verificar** |
+| --- | --- |
+| Clareza das respostas | Respostas vagas ou contraditórias? |
+| Escopo definido | Funcionalidades claras? |
+| Prazo realista | Entrega compatível com complexidade? |
+| Orçamento viável | Cobre os custos do projeto? |
 
-* funcionalidades implementadas;
-* requisitos obrigatórios;
-* integrações previstas;
-* conteúdos necessários;
-* comportamentos esperados.
+### **3.3 Se informações incompletas**
 
-A comparação entre requisitos e implementação ajuda a identificar possíveis pendências.
+| **Ação** | **Descrição** |
+| --- | --- |
+| Marcar briefing como "pendente" | Status: `aguardando_cliente` |
+| Enviar email para cliente | Lista de perguntas específicas |
+| Cliente responde via portal | Mesmo fluxo do briefing |
 
 ---
 
-### Registro de ajustes
+## **Etapa 4: Geração e Envio do Orçamento**
 
-Caso sejam encontrados problemas ou melhorias necessárias, recomenda-se registrar essas informações para acompanhamento.
+### **4.1 Cálculo do Orçamento**
 
-Exemplos:
+| **Fator** | **Peso** | **Como calcular** |
+| --- | --- | --- |
+| Tipo de projeto | 20% | ecommerce > institucional |
+| Número de funcionalidades | 25% | Cada feature adiciona valor |
+| Prazo | 15% | Urgência aumenta custo |
+| Complexidade técnica | 25% | Integrações, APIs, etc. |
+| Design | 15% | Customizado vs template |
 
-* correções;
-* melhorias de usabilidade;
-* ajustes de conteúdo;
-* adequações técnicas.
+### **4.2 Estrutura do Orçamento**
 
-Esse processo contribui para maior controle da evolução do projeto.
+markdown
 
----
-
-## Aprovação
+```
+# Proposta Técnica e Comercial
 
-Após a validação, inicia-se o processo de aprovação.
-
-O objetivo é obter confirmação de que a solução atende às expectativas estabelecidas.
-
----
+## Resumo do Projeto
+- Nome: {nome_projeto}
+- Tipo: {tipo_projeto}
+- Nicho: {segmento}
 
-### Processo de aprovação
+## Escopo Técnico
+- Tecnologias: {stack_definida}
+- Funcionalidades: {lista_funcionalidades}
+- Prazo estimado: {prazo_dias} dias
 
-A aprovação pode ocorrer de diferentes formas, dependendo da organização do projeto.
+## Investimento
+- Desenvolvimento: R$ {valor_desenvolvimento}
+- Design: R$ {valor_design}
+- Integrações: R$ {valor_integracoes}
+- **Total: R$ {valor_total}**
 
-Exemplos:
+## Condições de Pagamento
+- 30% na assinatura
+- 40% na entrega da homologação
+- 30% no deploy em produção
+```
 
-* aprovação por etapa;
-* aprovação da versão completa;
-* validações intermediárias.
+### **4.3 Envio da Proposta**
 
-A definição desse processo deve ser alinhada durante as etapas iniciais do projeto.
+| **Ação** | **Responsável** | **Prazo** |
+| --- | --- | --- |
+| Gerar PDF da proposta | Sistema | Automático |
+| Revisão final | Comercial Netz | 2 horas |
+| Enviar para cliente | Comercial | - |
+| Aguardar retorno | Cliente | Até 5 dias |
 
 ---
 
-### Resultado esperado desta etapa
+## **Etapa 5: Aprovação ou Revisão**
 
-Ao final desta fase, espera-se possuir:
+### **5.1 Cliente Aprova**
 
-* funcionalidades implementadas;
-* conteúdo configurado;
-* testes realizados;
-* requisitos validados;
-* ajustes aplicados;
-* aprovação obtida.
+| **Ação** | **Descrição** |
+| --- | --- |
+| Cliente aceita proposta | Assina digitalmente |
+| Status muda para `aprovado` | No sistema |
+| Projeto entra na fila de desenvolvimento | Equipe alocada |
 
-Esses elementos preparam o projeto para sua entrega e utilização.
+### **5.2 Cliente Solicita Ajustes**
 
----
+| **Ação** | **Descrição** |
+| --- | --- |
+| Cliente envia solicitação de ajuste | Comentários no portal |
+| Equipe Netz revisa | Negocia escopo |
+| Nova proposta gerada | Enviada para cliente |
 
-## Entrega
+### **5.3 Cliente Rejeita**
 
-Após a conclusão das etapas de desenvolvimento, testes e validação, o projeto encontra-se preparado para entrega.
+| **Ação** | **Descrição** |
+| --- | --- |
+| Status muda para `cancelado` | Projeto arquivado |
+| Motivo registrado | Para análise de melhoria |
+| Briefing mantido no histórico | Disponível para consulta |
 
-O objetivo desta fase é disponibilizar a solução para utilização, garantindo que os requisitos definidos anteriormente tenham sido atendidos.
-
 ---
-
-### Preparação para entrega
 
-Antes da disponibilização do projeto, recomenda-se realizar uma revisão final dos principais elementos da solução.
+## **Etapa 6: Desenvolvimento**
 
-Exemplos:
+### **6.1 Configuração do Ambiente**
 
-* funcionamento das funcionalidades;
-* integridade dos conteúdos;
-* configurações do ambiente;
-* acessos necessários;
-* documentação disponível.
+| **Ação** | **Ferramenta** | **Responsável** |
+| --- | --- | --- |
+| Criar repositório | GitHub/GitLab | Dev Lead |
+| Configurar ambiente de desenvolvimento | Docker/Local | Desenvolvedor |
+| Instalar dependências | pip/npm | Desenvolvedor |
+| Configurar banco de dados | PostgreSQL/MySQL | Desenvolvedor |
 
-Essa revisão reduz riscos de problemas durante a utilização inicial.
+### **6.2 Estrutura de Branches**
 
----
+text
 
-### Disponibilização do projeto
+```
+main (produção)
+  ↑
+homolog (validação cliente)
+  ↑
+develop (integração)
+  ↑
+feature/* (novas funcionalidades)
+```
 
-A disponibilização pode ocorrer de diferentes formas, dependendo das características da solução desenvolvida.
+### **6.3 Cronograma de Entregas**
 
-Exemplos:
+| **Fase** | **Duração** | **Entregável** |
+| --- | --- | --- |
+| Setup inicial | 1 dia | Ambiente pronto |
+| Desenvolvimento backend | 30% do prazo | APIs, admin |
+| Desenvolvimento frontend | 40% do prazo | Telas, responsividade |
+| Integrações | 20% do prazo | APIs externas |
+| Testes | 10% do prazo | Correção de bugs |
 
-* publicação em ambiente de produção;
-* entrega para homologação;
-* disponibilização para validação final.
+### **6.4 Checkpoints Diários**
 
-O processo adotado deve seguir os critérios definidos para cada projeto.
+| **Horário** | **Atividade** |
+| --- | --- |
+| 10h | Daily de 15 min com a equipe |
+| 15h | Commit do progresso no repositório |
+| 18h | Atualização do projeto no portal (cliente visualiza) |
 
 ---
-
-### Transferência de informações
-
-Quando necessário, recomenda-se fornecer orientações relacionadas à utilização da solução.
 
-Exemplos:
+## **Etapa 7: Homologação**
 
-* acesso ao sistema;
-* gerenciamento de conteúdo;
-* utilização do CMS;
-* atualização de informações;
-* fluxos administrativos.
+### **7.1 Ambiente de Homologação**
 
-Essa etapa contribui para uma transição mais eficiente entre desenvolvimento e utilização.
+| **Característica** | **Descrição** |
+| --- | --- |
+| URL | `homolog.seuprojeto.netz.com` |
+| Acesso | Cliente + Equipe Netz |
+| Protegido por senha | Somente usuários autorizados |
 
----
+### **7.2 Checklist de Homologação**
 
-## Pós-entrega
+| **Item** | **Critério** |
+| --- | --- |
+| Funcionalidades | Todas as especificadas no briefing |
+| Responsividade | Funciona em desktop, tablet, mobile |
+| Performance | Carregamento < 3 segundos |
+| Acessibilidade | Segue WCAG 2.1 AA |
+| SEO | Configurações básicas aplicadas |
+| Segurança | HTTPS, proteção contra XSS/CSRF |
 
-A conclusão do desenvolvimento não representa necessariamente o encerramento do ciclo de vida do projeto.
+### **7.3 Validação pelo Cliente**
 
-Dependendo da solução, podem existir necessidades de acompanhamento, manutenção ou evolução futura.
+| **Ação** | **Prazo** | **Consequência se não responder** |
+| --- | --- | --- |
+| Cliente testa o site | 3 dias | Prazo prorrogado |
+| Envia lista de ajustes | - | Equipe corrige |
+| Aprova homologação | - | Segue para produção |
 
 ---
-
-### Correções e ajustes
-
-Após a utilização inicial, podem surgir oportunidades de melhoria ou necessidades de correção.
-
-Exemplos:
-
-* ajustes de conteúdo;
-* correções de comportamento;
-* melhorias de usabilidade;
-* adequações operacionais.
 
-O registro dessas demandas auxilia no acompanhamento da evolução da solução.
+## **Etapa 8: Deploy em Produção**
 
----
+### **8.1 Pré-Deploy**
 
-### Evolução contínua
+| **Ação** | **Descrição** |
+| --- | --- |
+| Backup do ambiente de homologação | Cópia de segurança |
+| Revisão final de código | Code review |
+| Executar testes automatizados | Unitários e integração |
+| Verificar variáveis de ambiente | Todas configuradas |
 
-Projetos digitais normalmente passam por processos de evolução ao longo do tempo.
+### **8.2 Deploy**
 
-Exemplos:
+bash
 
-* novas funcionalidades;
-* novas integrações;
-* expansão de conteúdo;
-* melhorias de experiência do usuário;
-* adequações de negócio.
+```
+# Fluxo de deploy
+git checkout main
+git merge homolog
+git push origin main
 
-Por esse motivo, recomenda-se manter histórico e documentação das decisões tomadas durante o projeto.
-
----
+# Executar migrações
+python manage.py migrate --noinput
 
-### Atualização da documentação
+# Coletar arquivos estáticos
+python manage.py collectstatic --noinput
 
-Sempre que mudanças significativas forem realizadas, recomenda-se atualizar os documentos relacionados ao projeto.
+# Reiniciar serviços
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+```
 
-Benefícios:
+### **8.3 Pós-Deploy**
 
-* preservação do conhecimento;
-* redução da dependência de conhecimento individual;
-* facilidade de manutenção futura;
-* maior rastreabilidade das decisões.
+| **Ação** | **Responsável** |
+| --- | --- |
+| Testar site em produção | QA |
+| Verificar logs de erro | Dev Lead |
+| Notificar cliente | Comercial |
+| Status muda para `concluido` | Sistema |
 
 ---
-
-## Checklist do fluxo
-
-Antes da conclusão do projeto, recomenda-se verificar os seguintes pontos.
-
-### Levantamento de requisitos
 
-* [ ] Informações iniciais coletadas.
-* [ ] Objetivos identificados.
-* [ ] Público-alvo definido.
-* [ ] Funcionalidades registradas.
-* [ ] Requisitos organizados.
+## **Etapa 9: Pós-Entrega**
 
----
-
-### Planejamento
+### **9.1 Entrega ao Cliente**
 
-* [ ] Escopo definido.
-* [ ] Estrutura do projeto planejada.
-* [ ] Conteúdos identificados.
-* [ ] Dependências registradas.
-* [ ] Prioridades estabelecidas.
+| **Entregável** | **Formato** |
+| --- | --- |
+| Acesso ao site | URL e credenciais |
+| Documentação técnica | PDF/Markdown |
+| Manual do usuário | PDF/Video |
+| Acesso ao código (se contratado) | Repositório privado |
 
----
+### **9.2 Treinamento (se aplicável)**
 
-### Desenvolvimento
+| **Tipo** | **Duração** | **Conteúdo** |
+| --- | --- | --- |
+| Básico | 1 hora | Como editar conteúdo |
+| Avançado | 2 horas | Painel administrativo, relatórios |
+| Técnico | 3 horas | API, integrações, manutenção |
 
-* [ ] Funcionalidades implementadas.
-* [ ] Integrações configuradas.
-* [ ] Estrutura do projeto concluída.
-* [ ] Conteúdos inseridos.
+### **9.3 Suporte Pós-Entrega**
 
----
+| **Período** | **Cobertura** | **Valor** |
+| --- | --- | --- |
+| Primeiros 30 dias | Correção de bugs | Incluso |
+| Primeiro ano | Suporte por ticket | R$ 200/mês |
+| Após 1 ano | Novo contrato | A combinar |
 
-### CMS e conteúdo
+### **9.4 Encerramento do Projeto**
 
-* [ ] Conteúdo configurado.
-* [ ] Permissões definidas.
-* [ ] Estrutura administrativa validada.
-* [ ] Atualizações testadas.
+| **Ação** | **Responsável** |
+| --- | --- |
+| Arquivar documentação | Admin |
+| Encerrar ambiente de homologação | DevOps |
+| Atualizar portfólio da Netz | Marketing |
+| Solicitar depoimento/referência | Comercial |
 
 ---
-
-### Testes
 
-* [ ] Testes funcionais realizados.
-* [ ] Testes de responsividade realizados.
-* [ ] Testes de acessibilidade realizados.
-* [ ] Conteúdo revisado.
+## **Fluxograma Resumido**
 
----
+text
 
-### Validação e aprovação
+```
+┌─────────────────┐
+│  Briefing preenchido  │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│   IA analisa dados    │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│ Equipe Netz valida    │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│  Gera orçamento      │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│  Cliente aprova?     │
+└────────┬────────┘
+      ↓        ↓
+     SIM      NÃO
+      ↓        ↓
+┌─────────┐  ┌─────────┐
+│Desenvolve│  │Revisa/   │
+│         │  │Cancela   │
+└────┬────┘  └─────────┘
+     ↓
+┌─────────────────┐
+│   Homologação     │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│   Deploy produção  │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│  Pós-entrega      │
+└─────────────────┘
+```
 
-* [ ] Requisitos conferidos.
-* [ ] Ajustes aplicados.
-* [ ] Aprovação obtida.
-
 ---
 
-### Entrega
+## **Responsáveis e Papéis**
 
-* [ ] Projeto disponibilizado.
-* [ ] Acessos fornecidos.
-* [ ] Informações transferidas.
-* [ ] Documentação organizada.
+| **Papel** | **Responsabilidades** |
+| --- | --- |
+| **Cliente/Agência** | Preenche briefing, aprova orçamento, valida homologação |
+| **Analista Netz** | Valida briefing, negocia escopo, mantém cliente informado |
+| **Dev Lead Netz** | Define stack, revisa código, garante qualidade técnica |
+| **Desenvolvedor** | Codifica funcionalidades, corrige bugs |
+| **QA** | Testa funcionalidades, reporta bugs |
+| **DevOps** | Configura ambientes, faz deploy |
+| **Comercial** | Envia proposta, fecha contrato |
 
 ---
-
-## Benefícios do fluxo documentado
 
-A utilização de um fluxo estruturado contribui para:
+## **Ferramentas Utilizadas**
 
-* melhor organização do trabalho;
-* redução de retrabalho;
-* aumento da previsibilidade;
-* maior alinhamento entre envolvidos;
-* melhor rastreabilidade das decisões.
+| **Etapa** | **Ferramenta** |
+| --- | --- |
+| Briefing | Portal Django |
+| Comunicação | Slack, Email |
+| Repositório | GitHub/GitLab |
+| Gerenciamento de projeto | Trello/ClickUp |
+| Design | Figma |
+| Ambiente de desenvolvimento | Docker |
+| Deploy | Gunicorn + Nginx |
+| Monitoramento | Sentry, Logs |
 
-Além disso, facilita a compreensão das etapas necessárias para condução de projetos digitais.
-
 ---
 
-## Considerações finais
+## **Histórico de Revisão**
 
-Durante a Fase 0 do Portal de Parcerias, foram estudadas e documentadas etapas relacionadas ao levantamento de informações, planejamento, desenvolvimento, gerenciamento de conteúdo, validação e entrega de projetos.
+| **Versão** | **Data** | **Autor** | **Descrição** |
+| --- | --- | --- | --- |
+| 1.0 | 2025-06-15 | Netz Team | Versão inicial do workflow |
 
-O fluxo apresentado neste documento busca consolidar esse entendimento em uma visão geral do processo analisado durante a residência tecnológica.
+text
 
-As etapas descritas podem sofrer adaptações conforme características específicas de cada projeto e conforme a evolução das ferramentas e processos adotados.
+```
 
 ---
-
-## Próximos passos
-
-Para evoluções futuras, recomenda-se:
 
-* aprofundar a documentação dos processos internos;
-* registrar padrões operacionais consolidados;
-* documentar fluxos específicos de ferramentas utilizadas;
-* revisar periodicamente o processo de desenvolvimento;
-* atualizar a documentação conforme novas necessidades surgirem.
+## Resumo do Documento:
 
-A manutenção contínua da documentação contribui para a preservação do conhecimento e para a melhoria dos processos ao longo do tempo.
+| Seção | Conteúdo |
+|-------|----------|
+| Etapa 1 | Recebimento do briefing pelo cliente |
+| Etapa 2 | IA analisa e estrutura os dados |
+| Etapa 3 | Equipe Netz valida tecnicamente |
+| Etapa 4 | Geração e envio do orçamento |
+| Etapa 5 | Cliente aprova ou pede revisão |
+| Etapa 6 | Desenvolvimento do projeto |
+| Etapa 7 | Homologação com cliente |
+| Etapa 8 | Deploy em produção |
+| Etapa 9 | Entrega e suporte pós-lançamento |
+```
