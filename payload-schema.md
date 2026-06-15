@@ -1,1867 +1,499 @@
-# Payload Schema do Formulário de Briefing
+# payload-schema.md
+
+# Payload Schema - Portal de Parcerias Netz
+
+## Versão
+
+1.0
+
+---
 
 ## Objetivo
 
-Este documento define padrões para estruturação, nomenclatura e tipagem dos dados coletados pelo formulário de briefing do Portal de Parcerias.
+Este documento define o padrão de estrutura de dados utilizado no Portal de Parcerias Netz para:
 
-Seu objetivo é garantir consistência na organização das informações, facilitar futuras integrações e servir como referência para processamento automatizado dos dados coletados.
-
----
-
-## Escopo
-
-Este documento não define:
-
-* estrutura de banco de dados;
-* endpoints de API;
-* arquitetura backend;
-* implementação específica em CMS.
-
-Seu foco está na organização lógica das informações coletadas pelo formulário de briefing.
+- Comunicação entre frontend e backend
+- Interpretação dos briefings pela I
+- Integração com sistemas externos
+- Garantia de consistência dos dados
 
 ---
 
-## O que é um payload
+## Convenções de Nomenclatura
 
-Payload é o conjunto de informações enviadas ou armazenadas após o preenchimento do formulário.
+| Tipo | Padrão | Exemplo |
+| --- | --- | --- |
+| Campos | snake_case | `nome_projeto` |
+| Arrays | plural | `respostas` |
+| Objetos | singular | `cliente` |
+| Constantes | UPPER_SNAKE | `STATUS_CHOICES` |
+| Códigos de perguntas | snake_case | `nome_empresa` |
 
-Exemplo:
+---
+
+## Tipos de Dados
+
+| Tipo | Descrição | Exemplo |
+| --- | --- | --- |
+| string | Texto | `"Cafeteria do João"` |
+| number | Número inteiro ou decimal | `15000` |
+| boolean | Verdadeiro ou falso | `true` |
+| datetime | Data e hora ISO 8601 | `2025-06-15T10:30:00Z` |
+| array | Lista de valores | `["pix", "cartao"]` |
+| object | Objeto aninhado | `{"nome": "João"}` |
+| null | Valor vazio | `null` |
+
+---
+
+## Estrutura Principal do Projeto
+
+### Projeto (modelo principal)
+
+| Campo | Tipo | Obrigatório | Descrição |
+| --- | --- | --- | --- |
+| `id` | number | Sim | Identificador único do projeto |
+| `nome_projeto` | string | Sim | Nome do projeto |
+| `tipo_projeto` | string | Sim | Tipo do projeto (ver lista de tipos) |
+| `status` | string | Sim | Status atual do briefing |
+| `agencia` | object | Não | Dados da agência parceira |
+| `cliente` | object | Não | Dados do cliente final |
+| `prazo_dias` | number | Não | Prazo estimado em dias |
+| `orcamento_sugerido` | number | Não | Orçamento sugerido |
+| `orcamento_fechado` | number | Não | Orçamento aprovado |
+| `data_criacao` | datetime | Sim | Data de criação do projeto |
+| `ultima_atualizacao` | datetime | Sim | Data da última alteração |
+| `responsavel_netz` | string | Não | Responsável pelo projeto na Netz |
+| `briefing_json` | object | Sim | Todas as respostas do briefing |
+| `ordem_personalizada` | array | Não | Ordem das perguntas definida pela IA |
+| `sugestoes_respostas` | object | Não | Sugestões de resposta da IA |
+
+---
+
+### Tipos de Projeto (tipo_projeto)
+
+Valores permitidos:
+
+| Valor | Exibição |
+| --- | --- |
+| `institucional` | Site Institucional |
+| `portfolio` | Portfólio |
+| `landing_page` | Landing Page |
+| `portal` | Portal |
+| `dashboard` | Dashboard |
+| `sistema_interno` | Sistema Interno |
+| `plataforma` | Plataforma |
+| `blog` | Blog |
+| `ecommerce` | E-commerce |
+| `outro` | Outro |
+
+---
+
+### Status do Projeto (status)
+
+| Valor | Exibição | Descrição |
+| --- | --- | --- |
+| `em_briefing` | Em Briefing | Coletando informações |
+| `orcamento_gerado` | Orçamento Gerado | Proposta criada |
+| `aprovado` | Aprovado | Proposta aceita |
+| `em_execucao` | Em Execução | Projeto em desenvolvimento |
+| `concluido` | Concluído | Projeto finalizado |
+| `cancelado` | Cancelado | Projeto cancelado |
+
+---
+
+## Estrutura do Briefing (briefing_json)
+
+### Objeto Principal
 
 ```json
 {
-  "companyName": "Empresa Exemplo",
-  "projectName": "Portal Institucional",
-  "responsibleName": "João Silva"
-}
-```
-
-Neste exemplo, cada campo representa uma informação fornecida pelo usuário durante o preenchimento do briefing.
-
----
-
-## O que é um schema
-
-Schema representa a definição da estrutura esperada dos dados.
-
-Ele estabelece:
-
-* quais campos existem;
-* quais tipos de dados são aceitos;
-* como os campos devem ser nomeados;
-* como as informações devem ser organizadas.
-
----
-
-# Convenções de nomenclatura
-
-## Padrão adotado
-
-Os campos deverão utilizar o padrão camelCase.
-
-Exemplos:
-
-```text
-companyName
-projectName
-responsibleName
-projectGoal
-targetAudience
-```
-
----
-
-## Evitar
-
-Não utilizar:
-
-```text
-CompanyName
-PROJECT_NAME
-nome_empresa
-NomeEmpresa
-```
-
----
-
-## Regras gerais
-
-* utilizar nomes em inglês;
-* utilizar termos claros e descritivos;
-* evitar abreviações desnecessárias;
-* manter consistência em todos os campos;
-* utilizar singular sempre que possível.
-
----
-
-# Tipos de dados
-
-Os campos poderão utilizar os seguintes tipos básicos.
-
----
-
-## String
-
-Utilizada para textos curtos ou longos.
-
-Exemplos:
-
-```text
-companyName
-email
-projectGoal
-services
-```
-
-Exemplo:
-
-```json
-{
-  "companyName": "Empresa Exemplo"
-}
-```
-
----
-
-## Boolean
-
-Representa respostas de verdadeiro ou falso.
-
-Exemplos:
-
-```text
-hasCMS
-needsSEO
-hasBlog
-needsTraining
-```
-
-Exemplo:
-
-```json
-{
-  "needsSEO": true
-}
-```
-
----
-
-## Number
-
-Representa valores numéricos.
-
-Exemplos:
-
-```text
-approvalParticipants
-estimatedUsers
-```
-
-Exemplo:
-
-```json
-{
-  "approvalParticipants": 3
-}
-```
-
----
-
-## Array
-
-Representa listas de valores.
-
-Exemplos:
-
-```text
-functionalities
-references
-integrations
-```
-
-Exemplo:
-
-```json
-{
-  "functionalities": [
-    "login",
-    "dashboard",
-    "payments"
-  ]
-}
-```
-
----
-
-## Object
-
-Representa agrupamentos de informações relacionadas.
-
-Exemplo:
-
-```json
-{
-  "contact": {
-    "responsibleName": "João Silva",
-    "email": "joao@email.com",
-    "phone": "(51) 99999-9999"
+  "projeto_id": 123,
+  "data_inicio": "2025-06-15T10:30:00Z",
+  "versao_briefing": 1,
+  "respostas": {
+    "codigo_pergunta_1": "resposta",
+    "codigo_pergunta_2": ["opcao1", "opcao2"]
   }
 }
 ```
 
----
+markdown
 
-# Estrutura geral proposta
-
-Os dados poderão ser organizados seguindo a mesma divisão das etapas do formulário.
-
-Exemplo:
-
-```text
-initialInformation
-companyInformation
-projectObjectives
-targetAudience
-projectType
-structure
-functionalities
-content
-design
-references
-cms
-marketing
-integrations
-timeline
-additionalQuestions
-finalNotes
-approvalProcess
-postLaunch
 ```
+# Payload Schema - Portal de Parcerias Netz
 
-Essa organização facilita manutenção, leitura e futura evolução do projeto.
+## Versão
 
----
-
-# Princípios de modelagem
-
-Durante a criação dos campos, recomenda-se:
-
-* manter nomenclatura consistente;
-* evitar duplicação de informações;
-* utilizar tipos adequados para cada dado;
-* priorizar clareza dos nomes;
-* organizar os campos conforme a estrutura do formulário;
-* permitir expansão futura sem necessidade de grandes alterações.
+1.0
 
 ---
 
-# Relação com o formulário de briefing
+## Objetivo
 
-Cada pergunta existente no formulário deverá possuir um campo correspondente dentro do payload.
+Este documento define o padrão de estrutura de dados utilizado no Portal de Parcerias Netz para:
 
-A estrutura documentada neste arquivo servirá como referência para organização dos dados coletados ao longo das 18 etapas do briefing.
-
-As próximas seções apresentarão os campos previstos para cada etapa do formulário.
-
----
-
-# Etapa 1 — Informações iniciais
-
-## Grupo
-
-```text
-initialInformation
-```
+* Comunicação entre frontend e backend
+* Interpretação dos briefings pela IA
+* Integração com sistemas externos
+* Garantia de consistência dos dados
 
 ---
 
-### companyName
+## Convenções de Nomenclatura
 
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** nome da empresa cliente.
-
----
-
-### projectName
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** nome utilizado para identificar o projeto.
+| Tipo| Padrão| Exemplo|
+|------|--------|---------|
+| Campos| snake_case| `nome_projeto`|
+| Arrays| plural| `respostas`|
+| Objetos| singular| `cliente`|
+| Constantes| UPPER_SNAKE| `STATUS_CHOICES`|
+| Códigos de perguntas| snake_case| `nome_empresa`|
 
 ---
 
-### responsibleName
+## Tipos de Dados
 
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** responsável principal pelo preenchimento do briefing.
-
----
-
-### email
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** e-mail de contato do responsável.
+| Tipo| Descrição| Exemplo|
+|------|-----------|---------|
+| string| Texto| `"Cafeteria do João"`|
+| number| Número inteiro ou decimal| `15000`|
+| boolean| Verdadeiro ou falso| `true`|
+| datetime| Data e hora ISO 8601| `2025-06-15T10:30:00Z`|
+| array| Lista de valores| `["pix", "cartao"]`|
+| object| Objeto aninhado| `{"nome": "João"}`|
+| null| Valor vazio| `null`|
 
 ---
 
-### phone
+## Estrutura Principal do Projeto
 
-**Tipo:** string
+### Projeto (modelo principal)
 
-**Obrigatório:** sim
-
-**Descrição:** telefone de contato.
-
----
-
-### website
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** endereço do site atual da empresa.
-
----
-
-### socialMedia
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** redes sociais da empresa.
+| Campo| Tipo| Obrigatório| Descrição|
+|-------|------|-------------|-----------|
+| `id`| number| Sim| Identificador único do projeto|
+| `nome_projeto`| string| Sim| Nome do projeto|
+| `tipo_projeto`| string| Sim| Tipo do projeto (ver lista de tipos)|
+| `status`| string| Sim| Status atual do briefing|
+| `agencia`| object| Não| Dados da agência parceira|
+| `cliente`| object| Não| Dados do cliente final|
+| `prazo_dias`| number| Não| Prazo estimado em dias|
+| `orcamento_sugerido`| number| Não| Orçamento sugerido|
+| `orcamento_fechado`| number| Não| Orçamento aprovado|
+| `data_criacao`| datetime| Sim| Data de criação do projeto|
+| `ultima_atualizacao`| datetime| Sim| Data da última alteração|
+| `responsavel_netz`| string| Não| Responsável pelo projeto na Netz|
+| `briefing_json`| object| Sim| Todas as respostas do briefing|
+| `ordem_personalizada`| array| Não| Ordem das perguntas definida pela IA|
+| `sugestoes_respostas`| object| Não| Sugestões de resposta da IA|
 
 ---
 
-### businessArea
+### Tipos de Projeto (tipo_projeto)
 
-**Tipo:** string
+Valores permitidos:
 
-**Obrigatório:** sim
-
-**Descrição:** segmento ou área de atuação.
-
----
-
-### location
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** cidade e país de atuação.
-
----
-
-# Etapa 2 — Sobre a empresa
-
-## Grupo
-
-```text
-companyInformation
-```
+| Valor| Exibição|
+|-------|----------|
+| `institucional`| Site Institucional|
+| `portfolio`| Portfólio|
+| `landing_page`| Landing Page|
+| `portal`| Portal|
+| `dashboard`| Dashboard|
+| `sistema_interno`| Sistema Interno|
+| `plataforma`| Plataforma|
+| `blog`| Blog|
+| `ecommerce`| E-commerce|
+| `outro`| Outro|
 
 ---
 
-### companyDescription
+### Status do Projeto (status)
 
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** descrição geral da empresa.
-
----
-
-### services
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** produtos ou serviços oferecidos.
+| Valor| Exibição| Descrição|
+|-------|----------|-----------|
+| `em_briefing`| Em Briefing| Coletando informações|
+| `orcamento_gerado`| Orçamento Gerado| Proposta criada|
+| `aprovado`| Aprovado| Proposta aceita|
+| `em_execucao`| Em Execução| Projeto em desenvolvimento|
+| `concluido`| Concluído| Projeto finalizado|
+| `cancelado`| Cancelado| Projeto cancelado|
 
 ---
 
-### diferencial
+## Estrutura do Briefing (briefing_json)
 
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** diferenciais competitivos relevantes.
-
----
-
-### brandPerception
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** percepção desejada da marca.
-
----
-
-### brandInformation
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** informações adicionais relacionadas à marca.
-
----
-
-# Etapa 3 — Objetivo do projeto
-
-## Grupo
-
-```text
-projectObjectives
-```
-
----
-
-### projectGoal
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** principal objetivo do projeto.
-
----
-
-### projectProblem
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** problema que o projeto pretende resolver.
-
----
-
-### expectedResults
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** resultados esperados pelo cliente.
-
----
-
-### projectPurposes
-
-**Tipo:** array
-
-**Obrigatório:** sim
-
-**Descrição:** finalidades principais do projeto.
-
----
-
-### Valores possíveis
-
-```text
-presentCompany
-captureLeads
-sell
-automateProcesses
-promoteBrand
-provideInformation
-other
-```
-
----
-
-# Etapa 4 — Público-alvo
-
-## Grupo
-
-```text
-targetAudience
-```
-
----
-
-### primaryAudience
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** público principal do projeto.
-
----
-
-### audienceType
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** classificação B2B ou B2C.
-
----
-
-### audienceProfile
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** perfil específico do público.
-
----
-
-### ageRange
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** faixa etária predominante.
-
----
-
-### audienceNeeds
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** necessidades importantes do público.
-
----
-
-# Etapa 5 — Tipo de projeto
-
-## Grupo
-
-```text
-projectType
-```
-
----
-
-### mainProjectType
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** classificação principal do projeto.
-
----
-
-### Valores possíveis
-
-```text
-institutionalWebsite
-portfolio
-landingPage
-portal
-dashboard
-internalSystem
-platform
-blog
-ecommerce
-other
-```
-
----
-
-# Exemplo da estrutura até a Etapa 5
+### Objeto Principal
 
 ```json
 {
-  "initialInformation": {
-    "companyName": "",
-    "projectName": "",
-    "responsibleName": "",
-    "email": "",
-    "phone": "",
-    "website": "",
-    "socialMedia": "",
-    "businessArea": "",
-    "location": ""
-  },
-
-  "companyInformation": {
-    "companyDescription": "",
-    "services": "",
-    "diferencial": "",
-    "brandPerception": "",
-    "brandInformation": ""
-  },
-
-  "projectObjectives": {
-    "projectGoal": "",
-    "projectProblem": "",
-    "expectedResults": "",
-    "projectPurposes": []
-  },
-
-  "targetAudience": {
-    "primaryAudience": "",
-    "audienceType": "",
-    "audienceProfile": "",
-    "ageRange": "",
-    "audienceNeeds": ""
-  },
-
-  "projectType": {
-    "mainProjectType": ""
-  }
-}
-```
----
-
-# Etapa 6 — Estrutura geral
-
-## Grupo
-
-```text id="e6-group"
-structure
-```
-
----
-
-### pagesAndSections
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** páginas ou seções previstas para o projeto.
-
----
-
-### hasSiteMap
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica se existe mapa do site definido.
-
----
-
-### hasDefinedFlow
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica se existe fluxo de navegação previamente definido.
-
----
-
-### hasRestrictedArea
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** informa se haverá área restrita para usuários.
-
----
-
-### mainUserAction
-
-**Tipo:** string
-
-**Obrigatório:** sim
-
-**Descrição:** principal ação que o usuário deverá executar.
-
----
-
-### userJourney
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** jornada esperada do usuário dentro do projeto.
-
----
-
-# Etapa 7 — Funcionalidades
-
-## Grupo
-
-```text id="e7-group"
-functionalities
-```
-
----
-
-### selectedFunctionalities
-
-**Tipo:** array
-
-**Obrigatório:** não
-
-**Descrição:** funcionalidades selecionadas para o projeto.
-
----
-
-### Valores possíveis
-
-```text id="e7-values"
-login
-userArea
-forms
-upload
-dashboard
-adminPanel
-chat
-whatsappIntegration
-payments
-api
-search
-notifications
-downloads
-other
-```
-
----
-
-### functionalityDetails
-
-**Tipo:** object
-
-**Obrigatório:** não
-
-**Descrição:** detalhes adicionais relacionados às funcionalidades selecionadas.
-
----
-
-### Exemplo
-
-```json id="e7-example"
-{
-  "selectedFunctionalities": [
-    "login",
-    "payments",
-    "api"
-  ],
-
-  "functionalityDetails": {
-    "payments": "Stripe",
-    "api": "Integração com ERP"
+  "projeto_id": 123,
+  "data_inicio": "2025-06-15T10:30:00Z",
+  "versao_briefing": 1,
+  "respostas": {
+    "codigo_pergunta_1": "resposta",
+    "codigo_pergunta_2": ["opcao1", "opcao2"]
   }
 }
 ```
 
+### **Campos do Objeto**
+
+| **Campo** | **Tipo** | **Obrigatório** | **Descrição** |
+| --- | --- | --- | --- |
+| `projeto_id` | number | Sim | ID do projeto no sistema |
+| `data_inicio` | datetime | Sim | Data de início do briefing |
+| `versao_briefing` | number | Sim | Versão do schema (incrementar em mudanças) |
+| `respostas` | object | Sim | Dicionário de respostas (código → valor) |
+
 ---
 
-# Etapa 8 — Conteúdo
+## **Códigos de Perguntas (snake_case)**
 
-## Grupo
+### **Grupo 1 - Empresa**
 
-```text id="e8-group"
-content
+| **Código** | **Tipo** | **Obrigatório** |
+| --- | --- | --- |
+| `nome_empresa` | string | Sim |
+| `nome_projeto` | string | Sim |
+| `responsavel` | string | Sim |
+| `email` | email | Sim |
+| `telefone` | string | Não |
+| `site_atual` | url | Não |
+| `redes_sociais` | string | Não |
+| `segmento` | string | Sim |
+| `cidade_pais` | string | Não |
+| `o_que_faz` | string | Não |
+| `produtos_servicos` | string | Não |
+
+### **Grupo 2 - Projeto**
+
+| **Código** | **Tipo** | **Obrigatório** |
+| --- | --- | --- |
+| `principal_objetivo` | string | Sim |
+| `problema_resolve` | string | Não |
+| `espera_alcancar` | string | Não |
+| `finalidade` | array | Não |
+| `publico_principal` | string | Sim |
+| `b2b_b2c` | string | Não |
+| `faixa_etaria` | string | Não |
+| `tipo_projeto` | string | Sim |
+
+### **Grupo 3 - Funcionalidades**
+
+| **Código** | **Tipo** | **Obrigatório** |
+| --- | --- | --- |
+| `paginas_necessarias` | string | Não |
+| `acao_principal` | string | Não |
+| `funcionalidades` | array | Não |
+| `area_restrita` | boolean | Não |
+| `precisa_integracao` | boolean | Não |
+| `quais_sistemas` | string | Não |
+
+### **Grupo 4 - Conteúdo e Design**
+
+| **Código** | **Tipo** | **Obrigatório** |
+| --- | --- | --- |
+| `conteudo_pronto` | string | Não |
+| `materiais_existentes` | string | Não |
+| `possui_identidade` | boolean | Não |
+| `possui_logo` | boolean | Não |
+| `cores_marca` | string | Não |
+| `estilo_desejado` | array | Não |
+| `sites_gosta` | string | Não |
+| `concorrentes` | string | Não |
+
+### **Grupo 5 - Prazo e Orçamento**
+
+| **Código** | **Tipo** | **Obrigatório** |
+| --- | --- | --- |
+| `precisa_seo` | boolean | Não |
+| `precisa_analytics` | boolean | Não |
+| `data_estimada` | date | Não |
+| `tem_urgencia` | boolean | Não |
+| `orcamento_sugerido` | number | Não |
+| `observacoes_finais` | string | Não |
+
+### **Perguntas Específicas (condicionais)**
+
+| **Código** | **Tipo** | **Quando usar** |
+| --- | --- | --- |
+| `ecommerce_produtos` | number | tipo_projeto = `ecommerce` |
+| `ecommerce_pagamento` | array | tipo_projeto = `ecommerce` |
+| `ecommerce_frete` | boolean | tipo_projeto = `ecommerce` |
+| `institucional_paginas` | number | tipo_projeto = `institucional` |
+| `institucional_blog` | boolean | tipo_projeto = `institucional` |
+| `precisa_erp` | string | precisa_integracao = `true` |
+| `precisa_crm` | string | precisa_integracao = `true` |
+
+---
+
+## **Formatos de Resposta por Tipo de Campo**
+
+### **Texto curto (text)**
+
+json
+
 ```
-
----
-
-### hasContentReady
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica se já existe conteúdo pronto.
-
----
-
-### existingMaterials
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** materiais já disponíveis.
-
----
-
-### textProvider
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** responsável pelo fornecimento dos textos.
-
----
-
-### imageProvider
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** responsável pelo fornecimento das imagens.
-
----
-
-### needsCopywriting
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de produção de conteúdo textual.
-
----
-
-### hasBlog
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica se haverá blog ou notícias.
-
----
-
-### contentUpdateFrequency
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** frequência prevista de atualização dos conteúdos.
-
----
-
-# Etapa 9 — Design e identidade
-
-## Grupo
-
-```text id="e9-group"
-design
-```
-
----
-
-### hasVisualIdentity
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** informa se a empresa possui identidade visual definida.
-
----
-
-### hasLogo
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica existência de logotipo.
-
----
-
-### hasBrandManual
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** informa se existe manual da marca.
-
----
-
-### brandColors
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** cores utilizadas pela marca.
-
----
-
-### brandFonts
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** tipografias utilizadas pela marca.
-
----
-
-### visualStyle
-
-**Tipo:** array
-
-**Obrigatório:** não
-
-**Descrição:** estilos visuais desejados para o projeto.
-
----
-
-### Valores possíveis
-
-```text id="e9-values"
-modern
-minimalist
-sophisticated
-technological
-corporate
-young
-premium
-other
-```
-
----
-
-# Etapa 10 — Referências
-
-## Grupo
-
-```text id="e10-group"
-references
-```
-
----
-
-### favoriteWebsites
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** sites que servem como referência para o cliente.
-
----
-
-### competitors
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** concorrentes relevantes.
-
----
-
-### visualReferences
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** referências visuais desejadas.
-
----
-
-### uxReferences
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** referências relacionadas à experiência do usuário.
-
----
-
-### likedElements
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** aspectos positivos identificados nas referências.
-
----
-
-### avoidedElements
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** elementos que o cliente prefere evitar.
-
----
-
-# Exemplo da estrutura até a Etapa 10
-
-```json id="e10-example"
 {
-  "structure": {
-    "pagesAndSections": "",
-    "hasSiteMap": false,
-    "hasDefinedFlow": false,
-    "hasRestrictedArea": false,
-    "mainUserAction": "",
-    "userJourney": ""
-  },
-
-  "functionalities": {
-    "selectedFunctionalities": [],
-    "functionalityDetails": {}
-  },
-
-  "content": {
-    "hasContentReady": false,
-    "existingMaterials": "",
-    "textProvider": "",
-    "imageProvider": "",
-    "needsCopywriting": false,
-    "hasBlog": false,
-    "contentUpdateFrequency": ""
-  },
-
-  "design": {
-    "hasVisualIdentity": false,
-    "hasLogo": false,
-    "hasBrandManual": false,
-    "brandColors": "",
-    "brandFonts": "",
-    "visualStyle": []
-  },
-
-  "references": {
-    "favoriteWebsites": "",
-    "competitors": "",
-    "visualReferences": "",
-    "uxReferences": "",
-    "likedElements": "",
-    "avoidedElements": ""
-  }
+  "codigo": "texto simples"
 }
 ```
----
 
-# Etapa 11 — Conteúdo dinâmico / CMS
+### **Texto longo (textarea)**
 
-## Grupo
+json
 
-```text id="e11-group"
-cms
 ```
-
----
-
-### canEditContent
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** informa se o cliente poderá editar conteúdos após a entrega.
-
----
-
-### editableContent
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** conteúdos que poderão ser editados pelo cliente.
-
----
-
-### needsAdminPanel
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica necessidade de painel administrativo.
-
----
-
-### updateResponsible
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** responsável pelas atualizações de conteúdo.
-
----
-
-### needsTraining
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica necessidade de treinamento.
-
----
-
-### autonomyLevel
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** nível de autonomia desejado pelo cliente.
-
----
-
-### Valores possíveis
-
-```text id="e11-values"
-full
-partial
-none
-```
-
----
-
-# Etapa 12 — Marketing
-
-## Grupo
-
-```text id="e12-group"
-marketing
-```
-
----
-
-### needsSEO
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica necessidade de otimização para mecanismos de busca.
-
----
-
-### hasMarketingBlog
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** informa se haverá blog com foco em marketing de conteúdo.
-
----
-
-### needsAnalytics
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de ferramentas de análise.
-
----
-
-### usesPixel
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** utilização de pixels de rastreamento.
-
----
-
-### hasNewsletter
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de newsletter.
-
----
-
-### campaignIntegration
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** integração com campanhas de marketing.
-
----
-
-### seoKeywords
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** palavras-chave relevantes para SEO.
-
----
-
-### seoRegions
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** regiões geográficas de atuação.
-
----
-
-### seoCompetitors
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** concorrentes considerados para análise de SEO.
-
----
-
-### analyticsPlatform
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** ferramenta de analytics utilizada.
-
----
-
-### campaignPlatforms
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** plataformas utilizadas em campanhas.
-
----
-
-# Etapa 13 — Integrações
-
-## Grupo
-
-```text id="e13-group"
-integrations
-```
-
----
-
-### needsIntegration
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica necessidade de integração com sistemas externos.
-
----
-
-### systems
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** sistemas envolvidos na integração.
-
----
-
-### hasERP
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de integração com ERP.
-
----
-
-### hasCRM
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de integração com CRM.
-
----
-
-### externalApis
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** APIs externas envolvidas.
-
----
-
-### importExport
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de importação ou exportação de dados.
-
----
-
-### existingDatabase
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** existência de banco de dados já utilizado pela empresa.
-
----
-
-### apiDocumentation
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** documentação disponível para APIs externas.
-
----
-
-### authenticationMethod
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** método de autenticação utilizado pelas integrações.
-
----
-
-### databaseTechnology
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** tecnologia utilizada no banco de dados existente.
-
----
-
-# Etapa 14 — Prazo
-
-## Grupo
-
-```text id="e14-group"
-timeline
-```
-
----
-
-### estimatedDate
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** data estimada para entrega.
-
----
-
-### hasUrgency
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** indica existência de urgência no projeto.
-
----
-
-### criticalDate
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** data crítica relacionada ao projeto.
-
----
-
-### hasProjectStages
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** informa se o projeto será dividido em etapas.
-
----
-
-### dependencies
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** dependências internas ou externas.
-
----
-
-### urgencyReason
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** motivo da urgência.
-
----
-
-### projectStages
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** descrição das etapas previstas.
-
----
-
-# Etapa 15 — Questões complementares
-
-## Grupo
-
-```text id="e15-group"
-additionalQuestions
-```
-
----
-
-### currentProblems
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** problemas atuais identificados pelo cliente.
-
----
-
-### currentFailures
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** processos ou funcionalidades que atualmente não funcionam bem.
-
----
-
-### limitations
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** limitações conhecidas.
-
----
-
-### priorities
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** pontos considerados prioritários.
-
----
-
-### futureItems
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** funcionalidades ou requisitos que podem ficar para versões futuras.
-
----
-
-# Exemplo da estrutura até a Etapa 15
-
-```json id="e15-example"
 {
-  "cms": {
-    "canEditContent": false,
-    "editableContent": "",
-    "needsAdminPanel": false,
-    "updateResponsible": "",
-    "needsTraining": false,
-    "autonomyLevel": ""
-  },
-
-  "marketing": {
-    "needsSEO": false,
-    "hasMarketingBlog": false,
-    "needsAnalytics": false,
-    "usesPixel": false,
-    "hasNewsletter": false,
-    "campaignIntegration": false
-  },
-
-  "integrations": {
-    "needsIntegration": false,
-    "systems": "",
-    "hasERP": false,
-    "hasCRM": false,
-    "externalApis": ""
-  },
-
-  "timeline": {
-    "estimatedDate": "",
-    "hasUrgency": false,
-    "criticalDate": "",
-    "hasProjectStages": false
-  },
-
-  "additionalQuestions": {
-    "currentProblems": "",
-    "currentFailures": "",
-    "limitations": "",
-    "priorities": "",
-    "futureItems": ""
-  }
+  "codigo": "texto longo com múltiplas linhas\nsegunda linha"
 }
 ```
----
 
-# Etapa 16 — Observações finais
+### **Email**
 
-## Grupo
+json
 
-```text
-finalNotes
 ```
-
----
-
-### restrictions
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** restrições identificadas para o projeto.
-
----
-
-### extraRequirements
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** requisitos adicionais informados pelo cliente.
-
----
-
-### observations
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** observações gerais relevantes para o projeto.
-
----
-
-### additionalInformation
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** informações complementares não contempladas nas etapas anteriores.
-
----
-
-# Etapa 17 — Processo de aprovação e comunicação
-
-## Grupo
-
-```text
-approvalProcess
-```
-
----
-
-### approvalResponsible
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** responsável principal pelas aprovações.
-
----
-
-### approvalParticipants
-
-**Tipo:** number
-
-**Obrigatório:** não
-
-**Descrição:** quantidade de pessoas envolvidas no processo de validação.
-
----
-
-### communicationChannels
-
-**Tipo:** array
-
-**Obrigatório:** não
-
-**Descrição:** canais utilizados para comunicação durante o projeto.
-
----
-
-### Valores possíveis
-
-```text
-email
-whatsapp
-meetings
-platform
-other
-```
-
----
-
-### approvalMethod
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** forma escolhida para aprovação do projeto.
-
----
-
-### Valores possíveis
-
-```text
-beforeDevelopment
-byStage
-finalVersion
-other
-```
-
----
-
-### feedbackDeadline
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** prazo interno para retorno e aprovação.
-
----
-
-### thirdPartyApproval
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** existência de aprovações dependentes de terceiros.
-
----
-
-### communicationNotes
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** observações relacionadas ao fluxo de comunicação.
-
----
-
-# Etapa 18 — Pós-lançamento e continuidade
-
-## Grupo
-
-```text
-postLaunch
-```
-
----
-
-### postLaunchTraining
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** necessidade de treinamento após a entrega.
-
----
-
-### desiredAutonomy
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** nível de autonomia desejado após o lançamento.
-
----
-
-### supportInterest
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** interesse em suporte contínuo.
-
----
-
-### futureIntegrations
-
-**Tipo:** boolean
-
-**Obrigatório:** não
-
-**Descrição:** previsão de futuras integrações.
-
----
-
-### futureExpansion
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** funcionalidades ou evoluções previstas.
-
----
-
-### futureExpectations
-
-**Tipo:** string
-
-**Obrigatório:** não
-
-**Descrição:** expectativas de crescimento e evolução do projeto.
-
----
-
-# Exemplo consolidado de payload
-
-```json
 {
-  "initialInformation": {},
-  "companyInformation": {},
-  "projectObjectives": {},
-  "targetAudience": {},
-  "projectType": {},
-  "structure": {},
-  "functionalities": {},
-  "content": {},
-  "design": {},
-  "references": {},
-  "cms": {},
-  "marketing": {},
-  "integrations": {},
-  "timeline": {},
-  "additionalQuestions": {},
-  "finalNotes": {},
-  "approvalProcess": {},
-  "postLaunch": {}
+  "email": "usuario@exemplo.com"
+}
+```
+
+### **Número (number)**
+
+json
+
+```
+{
+  "ecommerce_produtos": 150
+}
+```
+
+### **Data (date)**
+
+json
+
+```
+{
+  "data_estimada": "2025-12-31"
+}
+```
+
+### **Seleção única (radio/select)**
+
+json
+
+```
+{
+  "tipo_projeto": "ecommerce"
+}
+```
+
+### **Múltipla escolha (checkbox)**
+
+json
+
+```
+{
+  "finalidade": ["apresentar empresa", "captar leads", "vender"]
 }
 ```
 
 ---
 
-# Checklist de padronização
+## **Exemplo Completo de Payload**
 
-Antes da implementação recomenda-se verificar:
+json
 
-## Nomenclatura
-
-* [ ] Campos utilizando camelCase.
-* [ ] Nomes consistentes em todo o projeto.
-* [ ] Sem abreviações desnecessárias.
-* [ ] Campos nomeados em inglês.
-
----
-
-## Tipagem
-
-* [ ] Strings utilizadas para textos.
-* [ ] Booleans utilizados para verdadeiro/falso.
-* [ ] Arrays utilizados para múltiplas opções.
-* [ ] Objects utilizados para agrupamentos.
-
----
-
-## Estrutura
-
-* [ ] Campos organizados por etapa.
-* [ ] Ausência de informações duplicadas.
-* [ ] Estrutura preparada para expansão futura.
-* [ ] Organização compatível com o formulário.
-
----
-
-## Qualidade dos dados
-
-* [ ] Campos obrigatórios identificados.
-* [ ] Validações previstas.
-* [ ] Restrições documentadas.
-* [ ] Estrutura revisada antes da implementação.
+```
+{
+  "projeto_id": 42,
+  "data_inicio": "2025-06-15T10:30:00Z",
+  "versao_briefing": 1,
+  "respostas": {
+    "nome_empresa": "Cafeteria do João",
+    "nome_projeto": "Site da Cafeteria",
+    "responsavel": "João Silva",
+    "email": "joao@cafeteria.com",
+    "telefone": "(11) 99999-9999",
+    "segmento": "cafeteria especializada",
+    "tipo_projeto": "ecommerce",
+    "principal_objetivo": "Vender café online",
+    "publico_principal": "Jovens adultos 20-40 anos",
+    "funcionalidades": ["login/cadastro", "pagamentos", "busca"],
+    "ecommerce_produtos": 50,
+    "ecommerce_pagamento": ["pix", "cartao_credito", "boleto"],
+    "ecommerce_frete": true,
+    "possui_identidade": true,
+    "cores_marca": "#8B4513, #D2B48C",
+    "data_estimada": "2025-08-30",
+    "orcamento_sugerido": 15000
+  },
+  "status": "em_briefing",
+  "ultima_atualizacao": "2025-06-15T14:45:00Z"
+}
+```
 
 ---
 
-# Benefícios da padronização
+## **Validação de Dados**
 
-A utilização de um schema padronizado traz benefícios como:
+### **Regras de Validação**
 
-* maior consistência dos dados;
-* facilidade de manutenção;
-* integração simplificada com APIs;
-* melhor organização das informações;
-* suporte ao processamento automatizado;
-* facilidade de evolução futura do projeto.
+| **Campo** | **Regra** |
+| --- | --- |
+| `email` | Deve conter @ e domínio válido |
+| `telefone` | Mínimo 10 caracteres |
+| `data_estimada` | Não pode ser anterior à data atual |
+| `orcamento_sugerido` | Deve ser maior que 0 |
+| `ecommerce_produtos` | Mínimo 1, máximo 999999 |
+
+### **Regras Condicionais**
+
+| **Condição** | **Ação** |
+| --- | --- |
+| tipo_projeto = `ecommerce` | Campos ecommerce_* são obrigatórios |
+| tipo_projeto = `institucional` | Campos institucional_* são obrigatórios |
+| precisa_integracao = `true` | quais_sistemas deve ser preenchido |
 
 ---
 
-# Considerações finais
+## **Versionamento**
 
-Este documento registra uma proposta de organização lógica dos dados coletados pelo formulário de briefing do Portal de Parcerias.
+| **Versão** | **Data** | **Mudanças** |
+| --- | --- | --- |
+| 1.0 | 2025-06-15 | Versão inicial com todos os grupos |
 
-Seu objetivo é servir como referência para nomenclatura, estruturação e padronização das informações coletadas durante o processo de briefing.
+---
 
-A estrutura poderá ser adaptada conforme novas necessidades forem identificadas durante o desenvolvimento do projeto ou durante futuras integrações.
+## **Histórico de Revisão**
 
-Recomenda-se revisar este documento sempre que houver alterações significativas nas perguntas do formulário ou na forma como os dados são processados.
+| **Data** | **Autor** | **Descrição** |
+| --- | --- | --- |
+| 2025-06-15 | Netz Team | Criação do documento |
+
+---
+
+## **Referências**
+
+- models.py - Definição dos modelos Django
+- seed_perguntas.py - Lista completa de perguntas
+- design.md - Especificação visual do sistema
+
+text
+
+---
+
+## Resumo:
+
+| Seção | O que define |
+|-------|--------------|
+| Convenções de nomenclatura | Como nomear campos (`snake_case`) |
+| Tipos de dados | string, number, boolean, array, object |
+| Estrutura do Projeto | Campos principais e seus tipos |
+| Status e tipos | Valores permitidos para status e tipo_projeto |
+| Códigos de perguntas | Lista de todos os códigos por grupo |
+| Formatos de resposta | Como cada tipo de campo deve ser enviado |
+| Exemplo completo | Payload real para uma cafeteria |
+| Validação | Regras de negócio para cada campo |
